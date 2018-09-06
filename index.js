@@ -1,3 +1,7 @@
+#!/usr/bin/env node
+
+'use strict';
+
 const yargs = require('yargs');
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
