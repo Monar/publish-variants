@@ -27,7 +27,7 @@ const argv = yargs
   .help()
   .argv
 
-const config = require(argv.config);
+const config = require(getConfigPath(argv.config));
 const version = argv._[0];
 const availableVariants = Object.keys(config.variants)
   .filter(val => !argv.v || !argv.v.includes(v))
@@ -64,6 +64,14 @@ async function processVariant({ steps = [], suffix = '', tag = 'latest' }) {
   } else {
     await execCmd(`npm publish --tag ${tag}`);
   }
+}
+
+function getConfigPath(path) {
+  if(path.startsWith('/')) {
+    return path;
+  }
+
+  return `${process.cwd()}/${path}`;
 }
 
 async function execCmd(cmd) {
