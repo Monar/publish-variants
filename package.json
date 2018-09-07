@@ -1,6 +1,6 @@
 {
   "name": "publish-variants",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Enable publishing various variants of your library",
   "main": "index.js",
   "files": [

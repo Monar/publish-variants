@@ -5,7 +5,9 @@ Enable automated publication of same package as different variants like `es5` an
 ```bash
 npm install -D publish-variants
 ```
+
 ```bash
+# npx publish-variants --help
 publish-variants version
 
 Options:
@@ -36,4 +38,9 @@ module.exports = {
     },
   }
 }
+```
+
+To run just use `npx`:
+```
+npx publish-variants 1.0.0
 ```

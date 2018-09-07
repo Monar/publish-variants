@@ -39,11 +39,18 @@ run();
 
 async function run() {
   try {
+    if (argv['dry-run']) {
+      await execCmd(`npm version ${version} --no-git-tag-version `);
+    } else {
+      await execCmd(`npm version ${version}`);
+    }
+
     for (let key of availableVariants) {
       await processVariant(config.variants[key]);
     }
-    // Finish with git-tag and base version
-    await execCmd(`npm version ${version} --allow-same-version`);
+
+    // modify package.json to match initial version change
+    await execCmd(`npm version ${version} --no-git-tag-version --allow-same-version`);
   } catch (e) {
     if (e.cmd) {
       console.error(`Failed step "${e.cmd}"\n${e.stderr}`);
